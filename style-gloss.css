@@ -1,0 +1,290 @@
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  padding-left: 15px;
+  padding-right: 15px;
+
+  font-family: "Noto Sans", sans-serif;
+  line-height: 1.8;
+  color: #212529;
+}
+
+h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.definitions-group {
+  max-width: 510px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.letter {
+  display: block;
+  width: 55px;
+  height: 55px;
+  margin-bottom: 16px;
+
+  font-size: 1.8rem;
+  line-height: 55px;
+  font-weight: 700;
+  text-align: center;
+  color: white;
+
+  background-color: #3b455d;
+  border-radius: 50%;
+}
+
+.definition {
+  grid-column: 2;
+  margin-bottom: 40px;
+}
+
+.definition-card {
+  margin-bottom: 5px;
+  padding: 24px;
+
+  font-size: 0.875rem;
+
+  background-color: #e1e5ed;
+}
+
+.definition-card:last-of-type {
+  margin-bottom: 0;
+}
+
+.definition-card h2 {
+  margin: 0;
+  margin-bottom: 8px;
+
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.definition-card p {
+  margin: 0;
+  margin-bottom: 16px;
+
+  letter-spacing: -0.02px;
+}
+
+.definition-card ul {
+  padding-left: 20px;
+
+  list-style: none;
+}
+
+.definition-card li {
+  position: relative;
+}
+
+.definition-card li::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -20px;
+
+  width: 6px;
+  height: 6px;
+  
+  background-color: #ced4da;
+  border-radius: 100%;
+
+  transform: translateY(-50%);
+}
+
+.popup-link,
+.popup-link:visited,
+.popup-link:hover,
+.popup-link:active { 
+  color: #000000;
+  text-decoration: none;
+
+  border-bottom: 1px dashed #3b455d;
+  cursor: pointer;
+}
+
+@media (min-width: 48em) {
+  .definitions-group {
+    display: grid;
+    grid-template-columns: 1fr minmax(500px, 650px) 1fr;
+    gap: 3vw;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: unset;
+  }
+
+  .letter {
+    position: sticky;
+    top: 5px;
+    
+    grid-column: 1;
+    justify-self: end;
+    align-self: start;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+
+    font-size: 2.8rem;
+    line-height: 100px;
+  }
+
+  .definition {
+    grid-column: 2;
+  }
+
+  .definition-card h2 {
+    font-size: 1rem;
+  }
+}
+
+.scroll-up {
+  position: fixed;
+  bottom: 20px;
+  right: 5vw;
+
+  display: block;
+  width: 60px;
+  height: 60px;
+
+  background-color: tomato;
+  border-radius: 50%;
+
+  transition: all 0.5s;
+
+  cursor: pointer;
+}
+
+.scroll-up::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 15px;
+  height: 15px;
+  border: 3px solid white;
+  border-bottom: none;
+  border-right: none;
+
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.popup-window {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+
+  background-color: rgba(0, 0, 0, 0.7);
+
+  transition: all 0.5s;
+}
+
+.popup-content {
+  position: relative;
+  width: 90vw;
+  max-width: 700px;
+  min-height: 200px;
+  max-height: 90vh;
+  padding: 48px;
+
+  background-color: white;
+
+  overflow-y: auto;
+}
+
+.popup-content__link {
+  position: relative;
+
+  font-weight: bold;
+  color: #ba1a2a;
+  text-decoration: none;
+}
+
+.popup-content__link:hover {
+  color: #8f1420;
+
+  border-bottom: 2px solid #8f1420;
+}
+
+
+.popup-content__close-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+
+  border: none;
+  background: none;
+
+  transition: all 0.1s;
+
+  cursor: pointer;
+}
+
+.popup-content__close-btn::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 50%;
+
+  width: 20px;
+  height: 3px;
+  
+  background-color: black;
+
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.popup-content__close-btn::after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 50%;
+
+  width: 20px;
+  height: 3px;
+  
+  background-color: black;
+
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.popup-content__close-btn:hover {
+  opacity: 0.75;
+}
+
+.visually-hidden {
+  visibility: hidden;
+  opacity: 0;
+}
